@@ -4,9 +4,17 @@
 }
 
 .pass {
-  color: limegreen;
+  color: #78c446;
 }
 
 .fail {
   color: red;
+}
+
+#describe {
+  color: #465dc4;
+}
+
+#tests {
+  color: #4670c4;
 }

@@ -14,7 +14,7 @@ var testCounter = 0;
 function describe(title, func) {
   document
   .getElementById("test")
-  .innerHTML += '<h2>' + title + '</h2>';
+  .innerHTML += '<h2 id="describe">' + title + '</h2>';
   func();
 }
 
@@ -22,7 +22,7 @@ function it(name, block) {
   testCounter++;
   document
   .getElementById("test")
-  .innerHTML += '<h3>&nbsp;&nbsp;&nbsp;' + testCounter + '. ' + name + '</h3>';
+  .innerHTML += '<h3 id="tests">&nbsp;&nbsp;&nbsp;' + testCounter + '. ' + name + '</h3>';
   block();
 }
 
