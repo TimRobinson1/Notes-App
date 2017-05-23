@@ -1,1 +1,1 @@
-// Write your Jasmine-style tests here
+// Write tests here
