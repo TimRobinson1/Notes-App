@@ -4,21 +4,33 @@ function Tests() {
   this.success = 'Test passed!'
   this.message;
   this.color;
-  this.testCounter = 0;
   this.error;
+  this.indentation = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+}
+
+var testCounter = 0;
+
+
+function describe(title, func) {
+  document
+  .getElementById("test")
+  .innerHTML += '<h2>' + title + '</h2>';
+  func();
+}
+
+function it(name, block) {
+  testCounter++;
+  document
+  .getElementById("test")
+  .innerHTML += '<h3>&nbsp;&nbsp;&nbsp;' + testCounter + '. ' + name + '</h3>';
+  block();
 }
 
 
 // These are the tests you can run
-
 Tests.prototype.equal = function(actual, expected) {
-  // Checking if the input are arrays
-  if (Array.isArray(actual)  && Array.isArray(expected)) {
-    var result = this.arraysEqual(actual, expected);
-  } else {
     // Input is not an array
   var result = (actual === expected);
-  }
   this.error = ' -- Expected "' + actual + '" to equal "' + expected + '".'
   this._processResults(result)
 };
@@ -29,14 +41,14 @@ Tests.prototype.notEqual = function(actual, expected) {
   this._processResults(result)
 }
 
-Tests.prototype.arraysEqual = function(arr1, arr2) {
-  // This checks if the length and each element of array are identical
-  if(arr1.length !== arr2.length) { return false }
-  for(var i = arr1.length; i--;) {
-    if(arr1[i] !== arr2[i]) { return false }
-  }
-return true;
-}
+// Tests.prototype.arraysEqual = function(arr1, arr2) {
+//   // This checks if the length and each element of array are identical
+//   if(arr1.length !== arr2.length) { return false }
+//   for(var i = arr1.length; i--;) {
+//     if(arr1[i] !== arr2[i]) { return false }
+//   }
+// return true;
+// }
 
 
 
@@ -54,12 +66,10 @@ Tests.prototype._processResults = function(result) {
     this.status = 'fail';
   }
   this._printResult();
-  this.error = '';
 }
 
 Tests.prototype._printResult = function() {
-  this.testCounter++
   document
   .getElementById("test")
-  .innerHTML += "<p class='" + this.status + "'>" + this.testCounter + ". " + this.message + this.error + '</p>';
+  .innerHTML += "<p class='" + this.status + "'>" + this.indentation + " " + this.message + this.error + '</p>';
 };
