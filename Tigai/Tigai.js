@@ -26,6 +26,10 @@ function it(name, block) {
   block();
 }
 
+function click(id) {
+  document.getElementById(id).click()
+}
+
 
 // These are the tests you can run
 Tests.prototype.equal = function(actual, expected) {
@@ -44,6 +48,13 @@ Tests.prototype.notEqual = function(actual, expected) {
 Tests.prototype.include = function(string, substring) {
   var result = string.includes(substring);
   this.error = ' -- Expected "' + string + '" to include "' + substring + '".'
+  this._processResults(result)
+}
+
+Tests.prototype.idContains = function(id, content) {
+  var element = document.getElementById(id).innerHTML;
+  var result = element.includes(content);
+  this.error = ' -- Expected "' + id + '" to include "' + content + '".'
   this._processResults(result)
 }
 

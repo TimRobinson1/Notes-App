@@ -12,12 +12,22 @@ describe('Basic Tests', function() {
   });
 });
 
-describe('Super Basic', function() {
-  it("The string 'cats are evil' include 'cats'", function() {
+describe('Contains', function() {
+  it("The string 'cats are felines' include 'cats'", function() {
     assert.include('cats are evil', 'cats');
   });
 
-  it("The string 'cats are evil' include 'dogs'", function() {
+  it("The string 'cats are felines' include 'dogs'", function() {
     assert.include('cats are evil', 'dogs');
+  });
+});
+
+describe('Page Content', function() {
+  it("The page has the header 'TESTS'", function() {
+    assert.idContains('header', 'TESTS');
+  });
+
+  it("The page does not have the header 'BAD TESTS'", function() {
+    assert.idContains('header', 'BAD TESTS');
   });
 });
