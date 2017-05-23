@@ -1,0 +1,12 @@
+.pass, .fail {
+  font-size: 20px;
+  font-family:sans-serif;
+}
+
+.pass {
+  color: limegreen;
+}
+
+.fail {
+  color: red;
+}
