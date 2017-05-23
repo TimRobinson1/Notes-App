@@ -30,8 +30,15 @@ function click(id) {
   document.getElementById(id).click()
 }
 
+function fillIn(id, content) {
+  document.getElementById(id).value = content;
+}
+
+
 
 // These are the tests you can run
+
+// Check that two elements are equal
 Tests.prototype.equal = function(actual, expected) {
     // Input is not an array
   var result = (actual === expected);
@@ -39,18 +46,27 @@ Tests.prototype.equal = function(actual, expected) {
   this._processResults(result)
 };
 
+
+// Check that two elements are not equal
 Tests.prototype.notEqual = function(actual, expected) {
   var result = (actual !== expected)
   this.error = ' -- Expected "' + actual + '" to not equal "' + expected + '".'
   this._processResults(result)
 }
 
+
+// Use to find a substring in a string.
+// 'String' is the item you're searching and 'Substring' is what you're looking for.
 Tests.prototype.include = function(string, substring) {
   var result = string.includes(substring);
   this.error = ' -- Expected "' + string + '" to include "' + substring + '".'
   this._processResults(result)
 }
 
+
+// Check that an id (for example a header) contains a string.
+// Fill in 'id' with the name of the id you're looking to test and
+// 'content' with the string you're searching for.
 Tests.prototype.idContains = function(id, content) {
   var element = document.getElementById(id).innerHTML;
   var result = element.includes(content);
@@ -58,19 +74,8 @@ Tests.prototype.idContains = function(id, content) {
   this._processResults(result)
 }
 
-// Tests.prototype.arraysEqual = function(arr1, arr2) {
-//   // This checks if the length and each element of array are identical
-//   if(arr1.length !== arr2.length) { return false }
-//   for(var i = arr1.length; i--;) {
-//     if(arr1[i] !== arr2[i]) { return false }
-//   }
-// return true;
-// }
-
-
 
 // This is the results logic
-
 Tests.prototype._processResults = function(result) {
   if (result) {
     // This runs if the test passes
