@@ -41,6 +41,12 @@ Tests.prototype.notEqual = function(actual, expected) {
   this._processResults(result)
 }
 
+Tests.prototype.include = function(string, substring) {
+  var result = string.includes(substring);
+  this.error = ' -- Expected "' + string + '" to include "' + substring + '".'
+  this._processResults(result)
+}
+
 // Tests.prototype.arraysEqual = function(arr1, arr2) {
 //   // This checks if the length and each element of array are identical
 //   if(arr1.length !== arr2.length) { return false }

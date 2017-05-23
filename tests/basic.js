@@ -13,15 +13,11 @@ describe('Basic Tests', function() {
 });
 
 describe('Super Basic', function() {
-  it("Checks if Flib equals Lalp", function() {
-    assert.equal('Flig', 'Lalp');
+  it("The string 'cats are evil' include 'cats'", function() {
+    assert.include('cats are evil', 'cats');
   });
 
-  it("Checks if Nonsense equals Nonsense", function() {
-    assert.equal('Nonsense', 'Nonsense');
-  });
-
-  it("Expects Tim to not equal Nigel", function() {
-    assert.notEqual('Tim', 'Nigel');
+  it("The string 'cats are evil' include 'dogs'", function() {
+    assert.include('cats are evil', 'dogs');
   });
 });
