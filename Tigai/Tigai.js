@@ -27,7 +27,8 @@ function it(name, block) {
 }
 
 function click(id) {
-  document.getElementById(id).click()
+  document.getElementById(id).click();
+  //console.log(document.getElementById(id));
 }
 
 function fillIn(id, content) {
@@ -40,7 +41,7 @@ function fillIn(id, content) {
 
 // Check that two elements are equal
 Tests.prototype.equal = function(actual, expected) {
-    // Input is not an array
+  // Input is not an array
   var result = (actual === expected);
   this.error = ' -- Expected "' + actual + '" to equal "' + expected + '".'
   this._processResults(result)
@@ -70,7 +71,7 @@ Tests.prototype.include = function(string, substring) {
 Tests.prototype.idContains = function(id, content) {
   var element = document.getElementById(id).innerHTML;
   var result = element.includes(content);
-  this.error = ' -- Expected "' + id + '" to include "' + content + '".'
+  this.error = ' -- Expected the id ' + id + ' to include "' + content + '".'
   this._processResults(result)
 }
 

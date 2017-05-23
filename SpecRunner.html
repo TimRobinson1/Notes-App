@@ -8,10 +8,18 @@
 
   <body>
     <h1 id='header'>TESTS</h1>
+    <h2 id='testheader'></h2>
     <input id='box' type='text'>
-    <input id='testbutton' type='button' onclick='alert("button clicked!")' value='CLICK ME'>
+    <input id='testbutton' type='button' value='CLICK ME'>
     <div id='test'></div>
 
+    <script type='text/javascript'>
+      document.getElementById("testbutton").click();
+      document.getElementById("testbutton").addEventListener("click", function() {
+        var text = document.getElementById("box").value;
+        document.getElementById("testheader").innerHTML = text;
+      });
+    </script>
     <script src="Tigai/Tigai.js"></script>
     <script src='tests/basic.js'></script>
   </body>
