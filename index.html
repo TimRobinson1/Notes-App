@@ -8,5 +8,14 @@
       <textarea id='note' rows='10' cols='30' type='text'></textarea>
       <button id='create'>Create Note</button>
     </form>
+
+
+    <script>
+      var notePad = new NotePad();
+
+      document.getElementById("create").addEventListener("click", function() {
+        notePad.addNote(document.getElementById("note").value);
+      })
+    </script>
   </body>
 </html>
