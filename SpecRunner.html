@@ -9,15 +9,29 @@
   </head>
 
   <body>
+    <div id='test-suite' style='display:none;'>
+      <textarea id='note' rows='10' cols='30' type='text'></textarea>
+      <button id='create'>Create Note</button>
+    </div>
     <form><input id='run' type='submit' value='Run Tests'></form>
     <img class='logo' src='favicon.png'><h1 id='header'>Tigai</h1>
     <h2 id='test-counter'></h2>
     <div id='test'></div>
 
     <script type='text/javascript' src="src/notePad.js"></script>
+
+    <script>
+      var notePad = new NotePad();
+
+      document.getElementById("create").addEventListener("click", function() {
+        notePad.addNote(document.getElementById("note").value);
+      })
+    </script>
+
     <script type='text/javascript' src="Tigai/Tigai.js"></script>
     <script type='text/javascript' src="Tigai/TigaiExpect.js"></script>
     <script type='text/javascript' src='tests/notePadSpec.js'></script>
+    <script type='text/javascript' src='tests/featuresSpec.js'></script>
     <!-- <script type='text/javascript' src='tests/exampleSpec.js'></script> -->
   </body>
 </html>
