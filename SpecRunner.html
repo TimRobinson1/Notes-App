@@ -34,9 +34,11 @@
 
         document.getElementById("notes").innerHTML = "";
 
-        notePad.notes.forEach(function(note) {
+        notePad.notes.reverse().forEach(function(note) {
           document.getElementById("notes").innerHTML += "<p>" + note + "</p>";
         })
+
+        notePad.notes.reverse();
       })
 
     </script>
