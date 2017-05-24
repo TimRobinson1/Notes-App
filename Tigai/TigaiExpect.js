@@ -30,10 +30,6 @@ function updateCounter() {
   .innerHTML = '<span style="color:' + color + '">' + testCounter + ' tests, ' + failCounter + ' ' + fails + '</span>';
 }
 
-function testyFunk() {
-  alert('completed tests;')
-}
-
 function click(id) {
   document.getElementById(id).click();
 }
@@ -97,7 +93,6 @@ function expect(testValue) {
     toEqual: toEqual,
     toNotEqual: toNotEqual,
     toInclude: toInclude,
-    toHaveContent: toHaveContent,
-    status: status
+    toHaveContent: toHaveContent
   }
 }

@@ -4,7 +4,6 @@
 }
 
 body {
-  background-color: black;
   color:white;
   font-family: 'Electrolize', sans-serif;
 }
@@ -49,15 +48,16 @@ p.fail {
 #run {
   background-color: #2B8CCD;
   float:right;
-  border:1px solid #CCCCCC;
+  border:1px solid #888888;
   border-radius: 10px;
   outline:none;
-  color:#ffffff;
+  color:#000000;
   font-size:30px;
 }
 
 #run:hover {
   background-color: darkblue;
+  color:white;
 }
 
 #run:active {
