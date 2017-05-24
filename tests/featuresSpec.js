@@ -5,4 +5,8 @@ describe('Fill in form', function() {
     click('create');
     expect(notePad.notes[0]).toEqual('This is a test note');
   })
+
+  it('adds the note to the page', function() {
+    expect("notes").toHaveContent('This is a test note');
+  })
 })
