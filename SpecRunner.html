@@ -2,25 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Frontend, single page app</title>
+    <title>Tigai Test Runner v0.1.2</title>
+    <link href="https://fonts.googleapis.com/css?family=Electrolize" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
   </head>
 
   <body>
-    <h1 id='header'>TESTS</h1>
-    <h2 id='testheader'></h2>
-    <input id='box' type='text'>
-    <input id='testbutton' type='button' value='CLICK ME'>
+    <form><input id='run' type='submit' value='Run Tests'></form>
+    <img class='logo' src='favicon.png'><h1 id='header'>Tigai</h1>
+    <h2 id='test-counter'></h2>
     <div id='test'></div>
 
-    <script type='text/javascript'>
-      document.getElementById("testbutton").click();
-      document.getElementById("testbutton").addEventListener("click", function() {
-        var text = document.getElementById("box").value;
-        document.getElementById("testheader").innerHTML = text;
-      });
-    </script>
     <script src="Tigai/Tigai.js"></script>
+    <script src="Tigai/TigaiExpect.js"></script>
     <script src='tests/basic.js'></script>
   </body>
 </html>

@@ -15,7 +15,9 @@ describe('Basic Tests', function() {
     expect('header').toHaveContent('TESTS');
   });
 
-  it("Checks if 'header' id has content 'TESTS'", function() {
-    expect('header').toHaveContent('TESTS');
+  it("Checks if button produces desired results", function() {
+    fillIn('box').with('Dave'); // Fills in input box
+    click('testbutton'); // Clicks submit button
+    expect('testheader').toHaveContent('Dave'); // Expects to find new content
   });
 });
