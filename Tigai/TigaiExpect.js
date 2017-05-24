@@ -2,6 +2,9 @@ var status,
     testCounter = 0,
     failCounter = 0;
 
+
+
+
 function describe(title, runSection) {
   document
   .getElementById("test")
@@ -42,6 +45,9 @@ function fillIn(id) {
     with: enterText
   }
 }
+
+
+
 
 
 function expect(testValue) {
