@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+    <div id='main-note'>
+    </div>
+
+    <div id='test-suite'>
+      <textarea id='note' rows='10' cols='30' type='text'></textarea>
+      <button id='create'>Create Note</button>
+
+
+    </div>
+
+    <div id='notes'>
+    </div>
+
+
+    <script type='text/javascript' src="src/notePad.js"></script>
+
+    <script>
+      var notePad = new NotePad();
+      var noteCounter = 0;
+
+      document.getElementById("create").addEventListener("click", function() {
+        noteCounter = 0;
+        console.log(noteCounter);
+        console.log(notePad.notes);
+        //this should reload the path
+        //window.location = window.location.href.slice(1,-1);
+
+        notePad.addNote(document.getElementById("note").value);
+
+        document.getElementById("notes").innerHTML = "";
+
+        notePad.notes.reverse().forEach(function(note) {
+          note = notePad.shortenString(note);
+          document.getElementById("notes").innerHTML += '<a href="#note' + noteCounter + '">' + note + '</a><br>';
+          noteCounter++;
+        })
+
+        notePad.notes.reverse();
+        if ( noteCounter > 1 ) { window.location = '#note1' }
+      })
+
+      hashChange();
+
+      function hashChange() {
+        window.addEventListener("hashchange", displayNote);
+      };
+
+      function displayNote() {
+        document.getElementById("main-note").innerHTML = "<p>" + notePad.notes.reverse()[location.hash.split('#note')[1]] + "</p>";
+        notePad.notes.reverse();
+        console.log(window.location.href.slice(0, -1));
+      };
+
+
+    </script>
+  <!-- <script type='text/javascript' src='tests/exampleSpec.js'></script> -->
+  </body>
+</html>
