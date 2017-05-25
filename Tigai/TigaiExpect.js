@@ -1,26 +1,30 @@
 var status,
     testCounter = 0,
-    failCounter = 0;
+    failCounter = 0,
+    describeCounter =0;
 
 
 
 
+// These are for establishing a test layout & structure.
 function describe(title, runSection) {
+  describeCounter += 20;
   document
   .getElementById("test")
-  .innerHTML += '<h2 class="describe-title">' + title + '</h2>';
+  .innerHTML += `<h2 class="describe-title" style="margin-left:${describeCounter}px;">${title}</h2>`;
   runSection();
   updateCounter();
+  describeCounter -= 20;
 }
 
 function it(name, runTest) {
   testCounter++;
   document
   .getElementById("test")
-  .innerHTML += '<li class="it-title">' + ' ' + name + '</li>';
+  .innerHTML += `<li class="it-title"> ${name}</li>`;
   runTest();
   var list = document.getElementById("test").getElementsByTagName('li');
-  list[list.length - 1].className += " " + status;
+  list[list.length - 1].className += ` ${status}`;
 }
 
 function updateCounter() {
@@ -30,9 +34,11 @@ function updateCounter() {
   failCounter ? color = 'red' : color = '#00b300';
   document
   .getElementById("test-counter")
-  .innerHTML = '<span style="color:' + color + '">' + testCounter + ' tests, ' + failCounter + ' ' + fails + '</span>';
+  .innerHTML = `<span style="color:${color}">${testCounter} tests, ${failCounter} ${fails}</span>`;
 }
 
+
+// This section is for interacting with front-end HTML elements
 function click(id) {
   document.getElementById(id).click();
 }
@@ -49,32 +55,33 @@ function fillIn(id) {
 
 
 
-
+// This function returns the expect object, which has the specified functions
+// that you can call on it to run the test.
 function expect(testValue) {
   var errorMsg;
 
   function toEqual(actual) {
     var result = (actual === testValue);
-    errorMsg = ' -- Expected "' + testValue + '" to equal "' + actual + '".'
+    errorMsg = ` -- Expected "${testValue}" to equal "${actual}".`
     _processResults(result)
   }
 
   function toNotEqual(actual) {
     var result = (actual !== testValue);
-    errorMsg = ' -- Expected "' + testValue + '" to not equal "' + actual + '".'
+    errorMsg = ` -- Expected "${testValue}" to not equal "${actual}".`
     _processResults(result)
   }
 
   function toInclude(substring) {
     var result = testValue.includes(substring);
-    errorMsg = ' -- Expected "' + testValue + '" to include "' + substring + '".'
+    errorMsg = ` -- Expected "${testValue}" to include "${substring}".`
     _processResults(result)
   }
 
   function toHaveContent(content) {
     var element = document.getElementById(testValue).innerHTML;
     var result = element.includes(content);
-    errorMsg = ' -- Expected "' + element + '" to include "' + content + '".'
+    errorMsg = ` -- Expected "${element}" to include "${content}".`
     _processResults(result)
   }
 
@@ -92,7 +99,7 @@ function expect(testValue) {
   function _printResult() {
     document
     .getElementById("test")
-    .innerHTML += "<p class='fail'> " + errorMsg + '</p>';
+    .innerHTML += `<p class='fail'>${errorMsg}</p>`;
   }
 
   return {

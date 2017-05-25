@@ -14,7 +14,7 @@ var testCounter = 0;
 function describe(title, func) {
   document
   .getElementById("test")
-  .innerHTML += '<h2>' + title + '</h2>';
+  .innerHTML += `<h2>${title}</h2>`;
   func();
 }
 
@@ -22,7 +22,7 @@ function it(name, block) {
   testCounter++;
   document
   .getElementById("test")
-  .innerHTML += '<h3>&nbsp;&nbsp;&nbsp;' + testCounter + '. ' + name + '</h3>';
+  .innerHTML += `<h3>&nbsp;&nbsp;&nbsp;${testCounter}. ${name}</h3>`;
   block();
 }
 
@@ -43,7 +43,7 @@ function fillIn(id, content) {
 Tests.prototype.equal = function(actual, expected) {
   // Input is not an array
   var result = (actual === expected);
-  this.error = ' -- Expected "' + actual + '" to equal "' + expected + '".'
+  this.error = ` -- Expected "${actual}" to equal "${expected}".`
   this._processResults(result)
 };
 
@@ -51,7 +51,7 @@ Tests.prototype.equal = function(actual, expected) {
 // Check that two elements are not equal
 Tests.prototype.notEqual = function(actual, expected) {
   var result = (actual !== expected)
-  this.error = ' -- Expected "' + actual + '" to not equal "' + expected + '".'
+  this.error = ` -- Expected "${actual}" to not equal "${expected}".`
   this._processResults(result)
 }
 
@@ -60,7 +60,7 @@ Tests.prototype.notEqual = function(actual, expected) {
 // 'String' is the item you're searching and 'Substring' is what you're looking for.
 Tests.prototype.include = function(string, substring) {
   var result = string.includes(substring);
-  this.error = ' -- Expected "' + string + '" to include "' + substring + '".'
+  this.error = ` -- Expected "${string}" to equal "${substring}".`
   this._processResults(result)
 }
 
@@ -71,7 +71,7 @@ Tests.prototype.include = function(string, substring) {
 Tests.prototype.idContains = function(id, content) {
   var element = document.getElementById(id).innerHTML;
   var result = element.includes(content);
-  this.error = ' -- Expected the id ' + id + ' to include "' + content + '".'
+  this.error = ` -- Expected the id "${id}" to include "${content}".`
   this._processResults(result)
 }
 
@@ -94,5 +94,5 @@ Tests.prototype._processResults = function(result) {
 Tests.prototype._printResult = function() {
   document
   .getElementById("test")
-  .innerHTML += "<p class='" + this.status + "'>" + this.indentation + " " + this.message + this.error + '</p>';
+  .innerHTML += `<p class="${this.status}">${this.indentation} ${this.message}${this.error}</p>`;
 };
