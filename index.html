@@ -4,18 +4,41 @@
   </head>
   <body>
     <h1>Welcome to Note Maker</h1>
-    <form>
+    <div>
       <textarea id='note' rows='10' cols='30' type='text'></textarea>
       <button id='create'>Create Note</button>
-    </form>
+    </div>
+    <div id='notes'>
+    </div>
 
+    <div id ='note-display'> </div>
 
+    <script type='text/javascript' src="src/notePad.js"></script>
     <script>
       var notePad = new NotePad();
 
       document.getElementById("create").addEventListener("click", function() {
         notePad.addNote(document.getElementById("note").value);
+
+        var note_counter = 0
+        document.getElementById("notes").innerHTML = "";
+
+        notePad.notes.forEach(function(note) {
+          note = notePad.shortenString(note);
+          var list = document.getElementById("notes")
+          list.innerHTML = `<a  href='#${note_counter}'><p id='entry${note_counter}'>${note}</p></a>` + list.innerHTML;
+          console.log(document.getElementById(`entry${note_counter}`))
+          note_counter++
+        })
       })
+
+      window.addEventListener("hashchange", function() {
+        var indexNumber = window.location.hash.split("#")[1];
+        document.getElementById("note-display").innerHTML = notePad.notes[indexNumber]
+      });
+
+
+
     </script>
   </body>
 </html>
