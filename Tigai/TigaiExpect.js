@@ -1,41 +1,7 @@
 var status,
-    testCounter = 0,
-    failCounter = 0,
-    describeCounter =0;
-
-
-
+    failCounter = 0;
 
 // These are for establishing a test layout & structure.
-function describe(title, runSection) {
-  describeCounter += 20;
-  document
-  .getElementById("test")
-  .innerHTML += `<h2 class="describe-title" style="margin-left:${describeCounter}px;">${title}</h2>`;
-  runSection();
-  updateCounter();
-  describeCounter -= 20;
-}
-
-function it(name, runTest) {
-  testCounter++;
-  document
-  .getElementById("test")
-  .innerHTML += `<li class="it-title"> ${name}</li>`;
-  runTest();
-  var list = document.getElementById("test").getElementsByTagName('li');
-  list[list.length - 1].className += ` ${status}`;
-}
-
-function updateCounter() {
-  var fails,
-      color;
-  failCounter === 1 ? fails = 'failure' : fails = 'failures';
-  failCounter ? color = 'red' : color = '#00b300';
-  document
-  .getElementById("test-counter")
-  .innerHTML = `<span style="color:${color}">${testCounter} tests, ${failCounter} ${fails}</span>`;
-}
 
 
 // This section is for interacting with front-end HTML elements
@@ -62,44 +28,27 @@ function expect(testValue) {
 
   function toEqual(actual) {
     var result = (actual === testValue);
-    errorMsg = ` -- Expected "${testValue}" to equal "${actual}".`
-    _processResults(result)
+    error = ` -- Expected "${testValue}" to equal "${actual}".`
+    _processResults(result, error)
   }
 
   function toNotEqual(actual) {
     var result = (actual !== testValue);
-    errorMsg = ` -- Expected "${testValue}" to not equal "${actual}".`
-    _processResults(result)
+    error = ` -- Expected "${testValue}" to not equal "${actual}".`
+    _processResults(result, error)
   }
 
   function toInclude(substring) {
     var result = testValue.includes(substring);
-    errorMsg = ` -- Expected "${testValue}" to include "${substring}".`
-    _processResults(result)
+    error = ` -- Expected "${testValue}" to include "${substring}".`
+    _processResults(result, error)
   }
 
   function toHaveContent(content) {
     var element = document.getElementById(testValue).innerHTML;
     var result = element.includes(content);
-    errorMsg = ` -- Expected "${element}" to include "${content}".`
-    _processResults(result)
-  }
-
-  function _processResults(result) {
-    if (result) {
-      status = 'pass';
-      errorMsg = '';
-    } else {
-      failCounter++;
-      status = 'fail';
-    }
-    _printResult();
-  }
-
-  function _printResult() {
-    document
-    .getElementById("test")
-    .innerHTML += `<p class='fail'>${errorMsg}</p>`;
+    error = ` -- Expected "${element}" to include "${content}".`
+    _processResults(result, error)
   }
 
   return {
