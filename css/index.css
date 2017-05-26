@@ -1,0 +1,21 @@
+
+h1 {
+  font-family: 'Barrio', cursive;
+  padding-top: 1%;
+}
+.display-area {
+  width: 80%;
+  background-color: red;
+  margin: auto;
+  text-align: center;
+  padding-bottom: 100px;
+}
+
+#full-note {
+  margin: auto;
+  word-wrap: break-word;
+  padding: 2% 2.5% 2.5%;
+   width: 350px;
+   background-color: white;
+   border-radius: 20%;
+}

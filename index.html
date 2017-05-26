@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <link href="https://fonts.googleapis.com/css?family=Barrio" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
   </head>
   <body>
+    <div class="display-area">
     <h1>Welcome to Note Maker</h1>
     <div>
       <textarea id='note' rows='10' cols='30' type='text'></textarea>
@@ -12,31 +15,32 @@
     </div>
 
     <div id ='note-display'> </div>
+  </div>
 
     <script type='text/javascript' src="src/notePad.js"></script>
     <script>
       var notePad = new NotePad();
 
       document.getElementById("create").addEventListener("click", function() {
-        notePad.addNote(document.getElementById("note").value);
-
-        var note_counter = 0
-        document.getElementById("notes").innerHTML = "";
-
-        notePad.notes.forEach(function(note) {
-          note = notePad.shortenString(note);
+        var addedNote = document.getElementById("note").value
+        notePad.addNote(addedNote);
+        var note_index = notePad.notes.indexOf(addedNote);
+        var note = notePad.shortenString(addedNote);
           var list = document.getElementById("notes")
-          list.innerHTML = `<a  href='#${note_counter}'><p id='entry${note_counter}'>${note}</p></a>` + list.innerHTML;
-          console.log(document.getElementById(`entry${note_counter}`))
-          note_counter++
+        list.innerHTML = `<a href='#${note_index}'><p id='entry${note_index}'>${note}</p></a>` + list.innerHTML;
         })
-      })
 
       window.addEventListener("hashchange", function() {
         var indexNumber = window.location.hash.split("#")[1];
-        document.getElementById("note-display").innerHTML = notePad.notes[indexNumber]
-      });
+        document.getElementById("note-display").innerHTML = '<div id="full-note">' + notePad.notes[indexNumber] + '</div>' + '<button id="delete">Delete Note</button>'
 
+        document.getElementById("delete").addEventListener("click", function() {
+          var deletedNote = document.getElementById("full-note").value;
+          notePad.deleteNote(deletedNote);
+          document.getElementById("note-display").innerHTML = "";
+  
+        });
+      });
 
 
     </script>
