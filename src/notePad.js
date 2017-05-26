@@ -12,6 +12,8 @@ NotePad.prototype.shortenString = function(string) {
 
 NotePad.prototype.deleteNote = function (string) {
   this.notes = this.notes.slice(this.notes.indexOf(string))
+  document.getElementById("notes").innerHTML = "";
+  document.getElementById("note-display").innerHTML = "";
 };
 
 NotePad.prototype.newIndex = function (string) {

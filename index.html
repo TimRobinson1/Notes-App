@@ -27,18 +27,26 @@
         var note_index = notePad.notes.indexOf(addedNote);
         var note = notePad.shortenString(addedNote);
           var list = document.getElementById("notes")
-        list.innerHTML = `<a href='#${note_index}'><p id='entry${note_index}'>${note}</p></a>` + list.innerHTML;
+        list.innerHTML = `<a href='#${note_index}'><p id='entry${note_index}'>${note}</p></a>` + '<button id="delete">Delete Note</button>'+ list.innerHTML;
+
         })
 
       window.addEventListener("hashchange", function() {
         var indexNumber = window.location.hash.split("#")[1];
-        document.getElementById("note-display").innerHTML = '<div id="full-note">' + notePad.notes[indexNumber] + '</div>' + '<button id="delete">Delete Note</button>'
+        document.getElementById("note-display").innerHTML = '<div id="full-note">' + notePad.notes[indexNumber] + '</div>';
 
         document.getElementById("delete").addEventListener("click", function() {
           var deletedNote = document.getElementById("full-note").value;
           notePad.deleteNote(deletedNote);
           document.getElementById("note-display").innerHTML = "";
-  
+
+          document.getElementById("notes").innerHTML = "";
+          notePad.notes.forEach(function(note) {
+            var note_index = notePad.notes.indexOf(note);
+            var note = notePad.shortenString(note);
+              var list = document.getElementById("notes")
+            list.innerHTML = `<a href='#${note_index}'><p id='entry${note_index}'>${note}</p></a>` + list.innerHTML;
+          })
         });
       });
 
