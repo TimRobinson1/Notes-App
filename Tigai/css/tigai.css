@@ -1,0 +1,68 @@
+.pass, .fail {
+  font-size: 15px;
+  font-weight:bold;
+}
+
+body {
+  font-family: 'Electrolize', sans-serif;
+}
+
+#feature-test-suite {
+  display:none;
+}
+
+li {
+  text-indent:20px;
+}
+
+#header {
+  color: #2B8CCD;
+}
+
+.describe-title {
+  color: #2B8CCD;
+}
+
+.it-title {
+  font-size:18px;
+  padding:0;
+  margin:0;
+}
+
+.pass {
+  color: #00b300;
+}
+
+.fail {
+  color: red;
+}
+
+p.fail {
+  text-indent:100px;
+  font-size:18px;
+}
+
+.logo {
+  width:40px;
+  margin-right:10px;
+  float:left;
+}
+
+#run {
+  background-color: #2B8CCD;
+  float:right;
+  border:1px solid #888888;
+  border-radius: 10px;
+  outline:none;
+  color:#000000;
+  font-size:30px;
+}
+
+#run:hover {
+  background-color: darkblue;
+  color:white;
+}
+
+#run:active {
+  background-color:darkred;
+}
