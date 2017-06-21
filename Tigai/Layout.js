@@ -1,6 +1,7 @@
 var testCounter = 0,
     indent = 0,
-    errorMsg;
+    errorMsg,
+    beforeBlock = function() {};
 
 // Testing display structure and layout
 function describe(title, runSection) {
@@ -13,12 +14,20 @@ function describe(title, runSection) {
   indent -= 20;
 }
 
+(function(exports) {
+  function before(specs) {
+    specs;
+  }
+  exports.before = before;
+})(this)
+
 function it(name, runTest) {
   testCounter++;
   document
   .getElementById("test")
   .innerHTML += `<li class="it-title">${name}</li>`;
   try {
+    before();
     runTest();
   }
   catch(error) {
@@ -27,6 +36,7 @@ function it(name, runTest) {
   var list = document.getElementById("test").getElementsByTagName('li');
   list[list.length - 1].className += ` ${status}`;
 }
+
 
 function updateCounter() {
   var fails,

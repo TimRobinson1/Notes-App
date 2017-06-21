@@ -18,42 +18,35 @@ function fillIn(id) {
   }
 }
 
-
-
-
 // This function returns the expect object, which has the specified functions
 // that you can call on it to run the test.
 function expect(testValue) {
   var errorMsg;
 
   function toBeDefined()  {
-    error = ` -- Expected "${testValue}" to be defined.`
+    error = `Error: Expected "${testValue}" to be defined.`
     _processResults(testValue != void 0, error)
   }
 
   function toEqual(actual) {
-    var result = (actual === testValue);
-    error = ` -- Expected "${testValue}" to equal "${actual}".`
-    _processResults(result, error)
+    error = `Error: Expected "${testValue}" to equal "${actual}".`
+    _processResults(actual === testValue, error)
   }
 
   function toNotEqual(actual) {
-    var result = (actual !== testValue);
-    error = ` -- Expected "${testValue}" to not equal "${actual}".`
-    _processResults(result, error)
+    error = `Error: Expected "${testValue}" to not equal "${actual}".`
+    _processResults(actual !== testValue, error)
   }
 
   function toInclude(substring) {
-    var result = testValue.includes(substring);
-    error = ` -- Expected "${testValue}" to include "${substring}".`
-    _processResults(result, error)
+    error = `Error: Expected "${testValue}" to include "${substring}".`
+    _processResults(testValue.includes(substring), error)
   }
 
   function toHaveContent(content) {
-    var element = document.getElementById(testValue).innerHTML;
-    var result = element.includes(content);
-    error = ` -- Expected "${element}" to include "${content}".`
-    _processResults(result, error)
+    var element = document.querySelector(testValue).innerHTML;
+    error = `Error: Expected "${element}" to include "${content}".`
+    _processResults(element.includes(content), error)
   }
 
   return {

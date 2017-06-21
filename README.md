@@ -1,5 +1,7 @@
-# Notes-App
-Single Page Notes app in Javascript with no external frameworks
+# Tigai Testing Framework
+Tigai was built to unit test javascript code and was integral for gaining a deeper understanding of
+how testing frameworks are constructed.  It was created alongside a single-page app that was
+built using plain Javascript and Node, without any frameworks such as Express.
 
 ### Syntax for basic testing
 
