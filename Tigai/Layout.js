@@ -38,8 +38,6 @@ function updateCounter() {
   .innerHTML = `<span style="color:${color}">${testCounter} tests, ${failCounter} ${fails}</span>`;
 }
 
-
-
 // Processing and displaying results
 function _processResults(result, error) {
   if (result) {

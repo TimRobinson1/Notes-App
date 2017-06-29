@@ -10,33 +10,6 @@ function Tests() {
 
 var testCounter = 0;
 
-
-function describe(title, func) {
-  document
-  .getElementById("test")
-  .innerHTML += `<h2>${title}</h2>`;
-  func();
-}
-
-function it(name, block) {
-  testCounter++;
-  document
-  .getElementById("test")
-  .innerHTML += `<h3>&nbsp;&nbsp;&nbsp;${testCounter}. ${name}</h3>`;
-  block();
-}
-
-function click(id) {
-  document.getElementById(id).click();
-  //console.log(document.getElementById(id));
-}
-
-function fillIn(id, content) {
-  document.getElementById(id).value = content;
-}
-
-
-
 // These are the tests you can run
 
 // Check that two elements are equal
